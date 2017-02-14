@@ -1,11 +1,10 @@
 class RegisterWeb < LoginAbstract
 
   def register_user
-    "Login Web User"
+    'Login Web User'
   end
 
   def fail_register
-    "Fail Login web User"
+    'Fail Login web User'
   end
-
 end

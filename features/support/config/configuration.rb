@@ -1,10 +1,13 @@
 class FrameworkConfiguration
+
+  attr_accessor :region, :env, :browser_profile
+
   def set_region(region='uk')
-    ENV["REGION"] = region.downcase
+    ENV['REGION'] = region.downcase
   end
 
   def set_environment(env='staging')
-    raise "no env selected" if env == nil
-    ENV["TEST_ENV"] = env.downcase
+    raise 'no env selected' if env == nil
+    ENV['TEST_ENV'] = env.downcase
   end
 end

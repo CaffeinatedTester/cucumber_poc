@@ -7,7 +7,7 @@ Given(/^I pass a env parameter to the config$/) do
 end
 
 Then(/^then I will retrieve that env URI$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.getFrontEnd)
+  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
   expect(@obj.get_page_url).to include(@env)
 end
 
@@ -23,12 +23,10 @@ When(/^I create a new global map object$/) do
   @obj = CucumberAbstract.new
 end
 
-
 Then(/^I can access that region URI$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.getFrontEnd)
+  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
   expect(@obj.get_page_url).to include(@region)
 end
-
 
 Given(/^I do not pass a parameter to the config$/) do
   config = FrameworkConfiguration.new
@@ -37,7 +35,7 @@ Given(/^I do not pass a parameter to the config$/) do
 end
 
 Then(/^the URI will return the default value$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.getFrontEnd)
+  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
   expect(@obj.get_page_url).to include('uk')
   expect(@obj.get_page_url).to include('staging')
 end
@@ -47,7 +45,7 @@ When(/^I create a new abstract map object$/) do
 end
 
 Then(/^I can retrieve the correct page URI$/) do
-  expect(@obj.get_page_url).to eq("#{UrlManager.getFrontEnd}#{@obj.page}")
+  expect(@obj.get_page_url).to eq("#{UrlManager.get_front_end}#{@obj.page}")
   expect(@obj.get_page_url).to include(@region)
   expect(@obj.get_page_url).to include(@env)
 end
@@ -102,5 +100,4 @@ Then(/^I will not receive an API error$/) do
 end
 
 When(/^I make an API call to a not defined UI method$/) do
-
 end

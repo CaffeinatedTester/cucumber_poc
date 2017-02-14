@@ -7,7 +7,7 @@ class LoginAbstract < CucumberAbstract
   attr_reader :page
 
   def initialize
-    @page = "customer/login"
+    @page = 'customer/login'
   end
 
   def get_page_url
@@ -21,5 +21,4 @@ class LoginAbstract < CucumberAbstract
   def login_on_page
     raise "#{__method__} not defined within UI"
   end
-
 end

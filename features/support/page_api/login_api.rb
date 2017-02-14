@@ -12,16 +12,15 @@ class LoginAPI
     @myLogin.login_on_page
   end
 
-  def returnUI
+  def return_ui
     @myLogin.return_ui
   end
 
-  def doLogin
+  def do_login
     @myLogin.do_login
   end
 
-  def headerAction
+  def header_action
     @myLogin.header_action
   end
-
 end

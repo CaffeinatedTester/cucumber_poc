@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'cucumber'
-gem 'rspec'
-gem 'rake'
 gem 'interface'
+gem 'rake'
+gem 'rspec'

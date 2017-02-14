@@ -5,7 +5,6 @@
 class RegistrationAbstract < CucumberAbstract
 
   def shared_registration_element
-    "shared_registation_element"
+    'shared_registation_element'
   end
-
 end

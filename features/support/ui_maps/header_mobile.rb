@@ -1,5 +1,5 @@
 module HeaderMobile
-  def mobile_container
-    "mobile header container"
+  def burger_menu
+    true
   end
 end

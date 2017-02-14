@@ -1,15 +1,14 @@
 class LoginWeb < LoginAbstract
 
   def login_user
-    "Login Web User"
+    'Login Web User'
   end
 
   def fail_login
-    "Fail Login web User"
+    'Fail Login web User'
   end
 
   def login_on_page
     true
   end
-
 end

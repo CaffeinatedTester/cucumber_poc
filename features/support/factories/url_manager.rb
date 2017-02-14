@@ -12,15 +12,14 @@ class UrlManager
     @region = ENV['REGION']
   end
 
-  def self.getFrontEnd(protocol = nil, reload = true)
+  def self.get_front_end(protocol = nil, reload = true)
     load_config if reload
     protocol ||= @protocol
     "#{protocol}://#{@url.dig(@region, 'sub')}#{@env}#{@url.dig(@region, 'domain')}"
   end
 
-  def self.getAdmin(protocol = nil)
+  def self.get_admin(protocol = nil)
     protocol ||= @protocol
-    "#{@protocol}://#{@URL.dig('admin', 'sub')}#{@env}#{@URL.dig('admin', 'admin')}"
+    "#{protocol}://#{@url.dig('admin', 'sub')}#{@env}#{@url.dig('admin', 'admin')}"
   end
-
 end
