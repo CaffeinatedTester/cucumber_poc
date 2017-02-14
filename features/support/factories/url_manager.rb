@@ -5,17 +5,17 @@ require 'singleton'
 class UrlManager
   include Singleton
 
-  def initialize
+  def self.load_config
     @protocol = 'https'
     @url = YAML.load_file('./config/environments/environment.yml')
     @env = ENV['TEST_ENV']
     @region = ENV['REGION']
   end
 
-  def self.getFrontEnd(region = 'UK', protocol = nil)
+  def self.getFrontEnd(protocol = nil, reload = true)
+    load_config if reload
     protocol ||= @protocol
-    region ||= @region
-    "#{@protocol}://#{@url.dig(region, 'sub')}#{@env}#{@url.dig(region, 'domain')}"
+    "#{protocol}://#{@url.dig(@region, 'sub')}#{@env}#{@url.dig(@region, 'domain')}"
   end
 
   def self.getAdmin(protocol = nil)

@@ -4,8 +4,8 @@
 
 class CucumberAbstract
 
-  def get_page_url(region = nil)
-    UrlManager.getFrontEnd(region, bypass)
+  def get_page_url
+    UrlManager.getFrontEnd
   end
 
 end

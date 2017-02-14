@@ -2,12 +2,12 @@ Given(/^I pass a env parameter to the config$/) do
   config = FrameworkConfiguration.new
   @region = 'fr'
   @env = 'staging'
-  config.set_environment(@region)
+  config.set_region(@region)
   config.set_environment(@env)
 end
 
 Then(/^then I will retrieve that env URI$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+  expect(@abstract.get_page_url).to eq(UrlManager.getFrontEnd)
 end
 
 
@@ -22,8 +22,8 @@ end
 
 
 Then(/^I can access that region URI$/) do
-  expect(@abstract.get_page_url).to == UrlManager.getFrontEnd
-  p @abstract.get_page_url
+ # expect(@abstract.get_page_url).to == UrlManager.getFrontEnd
+ # p @abstract.get_page_url
 end
 
 
