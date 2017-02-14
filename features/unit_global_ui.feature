@@ -1,3 +1,4 @@
+@Unit
 Feature: Gobal Map Unit tests
   As a developer in test
   I want to implement a Gobal class
@@ -15,5 +16,5 @@ Scenario: Get region URI
 
 Scenario: Default URI
   Given I do not pass a parameter to the config
-  When I create a new gloval map object
-  Then the URI will return the defaul value
+  When I create a new global map object
+  Then the URI will return the default value

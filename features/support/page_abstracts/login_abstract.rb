@@ -4,16 +4,22 @@
 
 class LoginAbstract < CucumberAbstract
 
+  attr_reader :page
+
+  def initialize
+    @page = "customer/login"
+  end
+
   def shared_login_element
     "shared_login_element"
   end
 
-  def api_required_method
-    raise 'UI method not implemented'
+  def login_on_page
+    raise "#{__method__} not defined within UI"
   end
 
-  def get_base_uri(env)
-    super(region) + "customer/login"
+  def get_page_url
+    super + @page
   end
 
 end
