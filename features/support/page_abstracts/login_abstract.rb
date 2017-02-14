@@ -10,16 +10,16 @@ class LoginAbstract < CucumberAbstract
     @page = "customer/login"
   end
 
-  def shared_login_element
-    "shared_login_element"
+  def get_page_url
+    super + @page
+  end
+
+  def test_method_do_not_override
+    raise "#{__method__} not defined within UI"
   end
 
   def login_on_page
     raise "#{__method__} not defined within UI"
-  end
-
-  def get_page_url
-    super + @page
   end
 
 end

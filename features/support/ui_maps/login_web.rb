@@ -8,4 +8,8 @@ class LoginWeb < LoginAbstract
     "Fail Login web User"
   end
 
+  def login_on_page
+    true
+  end
+
 end

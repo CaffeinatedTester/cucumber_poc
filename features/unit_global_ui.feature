@@ -1,4 +1,4 @@
-@Unit
+@UNIT
 Feature: Gobal Map Unit tests
   As a developer in test
   I want to implement a Gobal class
