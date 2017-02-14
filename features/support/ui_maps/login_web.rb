@@ -1,4 +1,7 @@
+require_relative 'header_web'
+
 class LoginWeb < LoginAbstract
+  include HeaderWeb
 
   def login_user
     'Login Web User'

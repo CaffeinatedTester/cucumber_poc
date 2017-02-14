@@ -1,5 +1,5 @@
 @UNIT
-Feature: UI Map
+Feature: API feature
   As a developer in test
   I want to implement page APIs
   So that steps can access and the correct UI map

@@ -101,3 +101,18 @@ end
 
 When(/^I make an API call to a not defined UI method$/) do
 end
+
+Given(/^I have a page element mixin$/) do
+end
+
+When(/^I include it inside a UI map$/) do
+end
+
+Then(/^I will have access to the the methods$/) do
+  @obj = LoginMobile.new
+  expect(@obj.burger_menu).to eq true
+end
+
+Then(/^the API can access the header methods$/) do
+  expect(@obj.click_burger).to eq true
+end

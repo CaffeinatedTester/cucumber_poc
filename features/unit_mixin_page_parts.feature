@@ -4,13 +4,15 @@ Feature: Abstract_pages unit tests
   I want to implement a abstract pages
   So that methods can be shared with the correct UI maps
 
-  Scenario: Get page URI
-    Given I pass a region parameter to the config
-    When I create a new abstract map object
-    Then I can retrieve the correct page URI
+  Scenario: page element mixin
+    Given I have a page element mixin
+    When I include it inside a UI map
+    Then I will have access to the the methods
 
   Scenario: API method errors
-    When I create a new abstract map object
-    Then I will receive an error containing the method name
+    Given I have an environment variable Devices defined
+    When I create a new API object
+    Then the API can access the header methods
+
 
 

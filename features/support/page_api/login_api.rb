@@ -23,4 +23,8 @@ class LoginAPI
   def header_action
     @myLogin.header_action
   end
+
+  def click_burger
+    @myLogin.burger_menu
+  end
 end
