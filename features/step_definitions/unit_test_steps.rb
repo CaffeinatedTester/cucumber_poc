@@ -71,3 +71,36 @@ end
 Then(/^I will not receive an error$/) do
   expect(@obj.login_on_page).to eq(true)
 end
+
+Given(/^I have an environment variable Devices defined$/) do
+  ENV['DEVICE'] = 'web'
+  @device ||= nil
+end
+
+When(/^I create a new API object$/) do
+  @obj = LoginAPI.new(@device)
+end
+
+Then(/^I will be able to access the correct UI map$/) do
+  expect(@obj.myLogin.class).to eq(LoginWeb)
+end
+
+Given(/^I define an env variable$/) do
+  @device = 'mobile'
+end
+
+Then(/^I will have access to the env defined object$/) do
+  expect(@obj.myLogin.class).to eq(LoginMobile)
+end
+
+When(/^I make an API call to a valid UI method$/) do
+  @obj.login
+end
+
+Then(/^I will not receive an API error$/) do
+  expect(@obj.login).to eq(true)
+end
+
+When(/^I make an API call to a not defined UI method$/) do
+
+end
