@@ -18,9 +18,9 @@ class UrlManager
   end
 
   def self.params
-    @env = FrameworkConfiguration.instance.env
-    @region = FrameworkConfiguration.instance.region
-    @protocol = FrameworkConfiguration.instance.protocol
+    @env = FrameworkConfiguration.environment
+    @region = FrameworkConfiguration.region
+    @protocol = FrameworkConfiguration.protocol
     @url = YAML.load_file('./config/environments/environment.yml')
   end
 

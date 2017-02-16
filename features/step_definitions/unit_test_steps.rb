@@ -1,14 +1,14 @@
 Given(/^I pass a env parameter to the config$/) do
-  FrameworkConfiguration.instance.env = 'Test1'
+  FrameworkConfiguration.environment=('Test1')
 end
 
 Then(/^then I will retrieve that env URI$/) do
   expect(@obj.page_url).to eq(UrlManager.front_end)
-  expect(@obj.page_url).to include(FrameworkConfiguration.instance.env)
+  expect(@obj.page_url).to include(FrameworkConfiguration.environment)
 end
 
 Given(/^I pass a region parameter to the config$/) do
-  config = FrameworkConfiguration.instance.region = 'fr'
+  FrameworkConfiguration.region=('fr')
 end
 
 When(/^I create a new global map object$/) do
@@ -17,7 +17,7 @@ end
 
 Then(/^I can access that region URI$/) do
   expect(@obj.page_url).to eq(UrlManager.front_end)
-  expect(@obj.page_url).to include(FrameworkConfiguration.instance.region)
+  expect(@obj.page_url).to include(FrameworkConfiguration.region)
 end
 
 Given(/^I do not pass a parameter to the config$/) do
@@ -25,8 +25,8 @@ end
 
 Then(/^the URI will return the default value$/) do
   expect(@obj.page_url).to eq(UrlManager.front_end)
-  expect(@obj.page_url).to include(FrameworkConfiguration.instance.region)
-  expect(@obj.page_url).to include(FrameworkConfiguration.instance.env)
+  expect(@obj.page_url).to include(FrameworkConfiguration.region)
+  expect(@obj.page_url).to include(FrameworkConfiguration.environment)
 end
 
 When(/^I create a new abstract map object$/) do
@@ -34,10 +34,10 @@ When(/^I create a new abstract map object$/) do
 end
 
 Then(/^I can retrieve the correct page URI$/) do
-  p @obj.class.name
   expect(@obj.page_url).to eq("#{UrlManager.front_end}#{@obj.page}")
-  expect(@obj.page_url).to include(FrameworkConfiguration.instance.region)
-  expect(@obj.page_url).to include(FrameworkConfiguration.instance.env)
+  expect(@obj.page_url).to include(FrameworkConfiguration.region)
+  p FrameworkConfiguration.environment
+  expect(@obj.page_url).to include(FrameworkConfiguration.environment)
 end
 
 Then(/^I will receive an error containing the method name$/) do
