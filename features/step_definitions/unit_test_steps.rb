@@ -1,22 +1,14 @@
 Given(/^I pass a env parameter to the config$/) do
-  config = FrameworkConfiguration.new
-  @region = 'uk'
-  @env = 'staging'
-  config.set_region(@region)
-  config.set_environment(@env)
+  FrameworkConfiguration.instance.env = 'Test1'
 end
 
 Then(/^then I will retrieve that env URI$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
-  expect(@obj.get_page_url).to include(@env)
+  expect(@obj.page_url).to eq(UrlManager.front_end)
+  expect(@obj.page_url).to include(FrameworkConfiguration.instance.env)
 end
 
 Given(/^I pass a region parameter to the config$/) do
-  config = FrameworkConfiguration.new
-  @region = 'fr'
-  @env = 'staging'
-  config.set_region(@region)
-  config.set_environment(@env)
+  config = FrameworkConfiguration.instance.region = 'fr'
 end
 
 When(/^I create a new global map object$/) do
@@ -24,20 +16,17 @@ When(/^I create a new global map object$/) do
 end
 
 Then(/^I can access that region URI$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
-  expect(@obj.get_page_url).to include(@region)
+  expect(@obj.page_url).to eq(UrlManager.front_end)
+  expect(@obj.page_url).to include(FrameworkConfiguration.instance.region)
 end
 
 Given(/^I do not pass a parameter to the config$/) do
-  config = FrameworkConfiguration.new
-  config.set_region
-  config.set_environment
 end
 
 Then(/^the URI will return the default value$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
-  expect(@obj.get_page_url).to include('uk')
-  expect(@obj.get_page_url).to include('staging')
+  expect(@obj.page_url).to eq(UrlManager.front_end)
+  expect(@obj.page_url).to include(FrameworkConfiguration.instance.region)
+  expect(@obj.page_url).to include(FrameworkConfiguration.instance.env)
 end
 
 When(/^I create a new abstract map object$/) do
@@ -45,9 +34,10 @@ When(/^I create a new abstract map object$/) do
 end
 
 Then(/^I can retrieve the correct page URI$/) do
-  expect(@obj.get_page_url).to eq("#{UrlManager.get_front_end}#{@obj.page}")
-  expect(@obj.get_page_url).to include(@region)
-  expect(@obj.get_page_url).to include(@env)
+  p @obj.class.name
+  expect(@obj.page_url).to eq("#{UrlManager.front_end}#{@obj.page}")
+  expect(@obj.page_url).to include(FrameworkConfiguration.instance.region)
+  expect(@obj.page_url).to include(FrameworkConfiguration.instance.env)
 end
 
 Then(/^I will receive an error containing the method name$/) do

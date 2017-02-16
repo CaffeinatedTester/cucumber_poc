@@ -10,7 +10,7 @@ class LoginAbstract < CucumberAbstract
     @page = 'customer/login'
   end
 
-  def get_page_url
+  def page_url
     super + @page
   end
 
