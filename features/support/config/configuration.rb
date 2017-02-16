@@ -39,4 +39,12 @@ class FrameworkConfiguration
     @protocol = protocol
   end
 
+  def self.browser_profile
+    @browser_profile
+  end
+
+  def self.browser_profile=(device)
+    @browser_profile = device
+  end
+
 end
