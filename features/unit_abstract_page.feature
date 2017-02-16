@@ -12,5 +12,3 @@ Feature: Abstract_pages unit tests
   Scenario: API method errors
     When I create a new abstract map object
     Then I will receive an error containing the method name
-
-

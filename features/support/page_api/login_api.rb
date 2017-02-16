@@ -3,7 +3,7 @@ class LoginAPI
   attr_accessor :myLogin
 
   def initialize(env = nil)
-    env ||= ENV['DEVICE']
+    env ||= FrameworkConfiguration.browser_profile
     @myLogin = LoginWeb.new if env == 'web'
     @myLogin = LoginMobile.new if env == 'mobile'
   end

@@ -4,7 +4,7 @@
 
 class CucumberAbstract
 
-  def get_page_url
-    UrlManager.get_front_end
+  def page_url
+    UrlManager.front_end
   end
 end

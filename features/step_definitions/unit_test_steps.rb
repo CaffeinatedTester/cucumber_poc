@@ -1,22 +1,14 @@
 Given(/^I pass a env parameter to the config$/) do
-  config = FrameworkConfiguration.new
-  @region = 'uk'
-  @env = 'staging'
-  config.set_region(@region)
-  config.set_environment(@env)
+  FrameworkConfiguration.environment=('Test1')
 end
 
 Then(/^then I will retrieve that env URI$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
-  expect(@obj.get_page_url).to include(@env)
+  expect(@obj.page_url).to eq(UrlManager.front_end)
+  expect(@obj.page_url).to include(FrameworkConfiguration.environment)
 end
 
 Given(/^I pass a region parameter to the config$/) do
-  config = FrameworkConfiguration.new
-  @region = 'fr'
-  @env = 'staging'
-  config.set_region(@region)
-  config.set_environment(@env)
+  FrameworkConfiguration.region=('fr')
 end
 
 When(/^I create a new global map object$/) do
@@ -24,20 +16,17 @@ When(/^I create a new global map object$/) do
 end
 
 Then(/^I can access that region URI$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
-  expect(@obj.get_page_url).to include(@region)
+  expect(@obj.page_url).to eq(UrlManager.front_end)
+  expect(@obj.page_url).to include(FrameworkConfiguration.region)
 end
 
 Given(/^I do not pass a parameter to the config$/) do
-  config = FrameworkConfiguration.new
-  config.set_region
-  config.set_environment
 end
 
 Then(/^the URI will return the default value$/) do
-  expect(@obj.get_page_url).to eq(UrlManager.get_front_end)
-  expect(@obj.get_page_url).to include('uk')
-  expect(@obj.get_page_url).to include('staging')
+  expect(@obj.page_url).to eq(UrlManager.front_end)
+  expect(@obj.page_url).to include(FrameworkConfiguration.region)
+  expect(@obj.page_url).to include(FrameworkConfiguration.environment)
 end
 
 When(/^I create a new abstract map object$/) do
@@ -45,9 +34,10 @@ When(/^I create a new abstract map object$/) do
 end
 
 Then(/^I can retrieve the correct page URI$/) do
-  expect(@obj.get_page_url).to eq("#{UrlManager.get_front_end}#{@obj.page}")
-  expect(@obj.get_page_url).to include(@region)
-  expect(@obj.get_page_url).to include(@env)
+  expect(@obj.page_url).to eq("#{UrlManager.front_end}#{@obj.page}")
+  expect(@obj.page_url).to include(FrameworkConfiguration.region)
+  p FrameworkConfiguration.environment
+  expect(@obj.page_url).to include(FrameworkConfiguration.environment)
 end
 
 Then(/^I will receive an error containing the method name$/) do
@@ -71,20 +61,20 @@ Then(/^I will not receive an error$/) do
 end
 
 Given(/^I have an environment variable Devices defined$/) do
-  ENV['DEVICE'] = 'web'
-  @device ||= nil
+  FrameworkConfiguration.browser_profile='mobile'
 end
 
 When(/^I create a new API object$/) do
-  @obj = LoginAPI.new(@device)
+  @obj = LoginAPI.new
 end
 
 Then(/^I will be able to access the correct UI map$/) do
-  expect(@obj.myLogin.class).to eq(LoginWeb)
+  expect(@obj.myLogin.class.to_s).to match(/#{Regexp.quote(FrameworkConfiguration.browser_profile)}/i)
 end
 
 Given(/^I define an env variable$/) do
-  @device = 'mobile'
+  @test_profile = 'web'
+  FrameworkConfiguration.browser_profile=(@test_profile)
 end
 
 Then(/^I will have access to the env defined object$/) do
